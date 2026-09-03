@@ -1,0 +1,263 @@
+================================================================
+PV GENERATOR — CHANGE LOG
+================================================================
+A plain-English history of what changed in each version.
+No technical knowledge needed.
+
+Newest version is at the top.
+
+----------------------------------------------------------------
+VERSION 11 — "Appeal letters (Surat Rayuan)"
+----------------------------------------------------------------
+WHAT'S NEW
+- The app now recognises an approved penalty appeal letter (Surat
+  Rayuan). It spots one either by the file name containing "Surat
+  Rayuan", or by finding the words "RAYUAN PENALTI DILULUSKAN"
+  inside the PDF — so it still works even if the file is named
+  something else entirely.
+
+- Surat Rayuan letters are filed under Additional Documents. This
+  matters because they also carry a "Nombor Adjudikasi", so without
+  this they would have been mistaken for the main adjudication
+  letter and taken its place.
+
+- If a Surat Rayuan is uploaded, its deadline is used as the due
+  date, because an approved appeal replaces the original deadline.
+  It is read from the sentence:
+      "Sila jelaskan duti yang kena bayar selewatnya pada 16/09/2026."
+  If a due date had already been picked up from the original letter,
+  it is updated automatically and the app tells you it changed, for
+  example: "Surat Rayuan found — due date updated from 20/08/2026 to
+  16/09/2026".
+
+FIXED
+- The two different wordings LHDN uses for the deadline are now both
+  understood: "selewat-lewatnya pada ..." (adjudication letters) and
+  "selewatnya pada ..." (appeal letters). Previously only the first
+  was recognised, so appeal letters gave no due date at all.
+
+REMINDER (unchanged, still working)
+- Where no deadline is stated outright, the due date is still worked
+  out from "Tarikh Permohonan Diterima" on the Borang Nyata plus 30
+  calendar days.
+
+----------------------------------------------------------------
+VERSION 10 — "Clearer file names and built-in due dates"
+----------------------------------------------------------------
+WHAT'S NEW
+- Added a "Financial Year" box at the top of the screen. You type
+  the year once and it's used in all the file names. It remembers
+  what you typed last time and defaults to the current year.
+
+- Files are now named in a consistent, self-explanatory way:
+      LHDN PV (FY2026) - Turboservices Sdn Bhd (12-09-2026).pdf
+      LHDN PV (FY2026) - Turboservices Sdn Bhd (12-09-2026)
+          - Supporting Document (RM 57.00).pdf
+  The ZIP itself is named:
+      LHDN PV (FY2026) - Turboservices Sdn Bhd.zip
+  (no due date on the ZIP, since one ZIP can cover several dates).
+
+- Every generated PDF now carries its details inside the file's own
+  properties — due date, subsidiary, financial year, total amount
+  and the adjudication numbers. You can see these in Adobe Reader
+  under File > Properties, and Windows Search can find a voucher by
+  its due date or adjudication number even if the file gets renamed
+  or moved. Nothing extra is printed on the page itself.
+
+- The financial year is also saved in your drafts.
+
+----------------------------------------------------------------
+VERSION 9 — "Smarter due dates and 10-line vouchers"
+----------------------------------------------------------------
+WHAT'S NEW
+- The app can now work out the due date in two ways:
+    * If the letter states the deadline outright ("selewat-lewatnya
+      pada ..."), it uses that.
+    * Otherwise it reads "Tarikh Permohonan Diterima" from the
+      Borang Nyata form and adds 30 calendar days automatically.
+  Either way the due date fills in on its own — no typing needed.
+
+- A voucher now holds a maximum of 10 lines, because that's what
+  fits on the printed form. If a due date has more than 10 items,
+  the app automatically splits them across several vouchers:
+      lines 1-10  -> PV 1
+      lines 11-20 -> PV 2
+      lines 21-30 -> PV 3, and so on.
+  Line 11 will never be squeezed onto the same voucher as the first
+  ten. Each voucher keeps the correct due date and its own totals.
+
+- When a due date needs more than one voucher, its folder now
+  contains a subfolder per voucher ("PV 1 of 2", "PV 2 of 2"), each
+  holding that voucher's own PDF, supporting documents and list.
+  Due dates that only need one voucher stay as a single flat folder,
+  exactly as before.
+
+CHANGED
+- The notepad (.txt) file is now a clean list of adjudication
+  numbers only — one per line, with no numbering, no amounts and no
+  headings — so it can be copied straight into other systems.
+
+----------------------------------------------------------------
+VERSION 8 — "Two tools in one"
+----------------------------------------------------------------
+WHAT'S NEW
+- The PDF Page Swap tool is now built into the same app. Use the
+  round button floating on the right edge of the screen to switch
+  between "PV Generator" and "PDF Page Swap".
+    * PDF Page Swap lets you replace page 1 of a document with a
+      scanned signed copy. Just add both files — the app works out
+      which is which, shows you a before/after preview, and gives
+      you the combined file to download.
+
+INTERFACE MADE EASIER TO USE
+- Each adjudication line now folds up into a single row. When
+  folded, you still see the number, amount, due date, and how many
+  of the 4 required documents are attached. This makes a long list
+  of 50 lines actually readable instead of endless scrolling.
+- Added "Expand all" and "Collapse all" buttons.
+- Name, Date and Subsidiary now stay stuck to the top of the screen
+  while you scroll, with the running total next to them.
+- Save draft / Load draft / Preview PV / Generate ZIP are now
+  always visible in a bar at the bottom of the screen.
+- The big upload box is now a slim single row, and document
+  statuses are shown in a neat table instead of stacked boxes.
+
+ALSO
+- A version for uploading to GitHub was prepared, so the app can be
+  opened from a web link instead of downloading a folder.
+
+----------------------------------------------------------------
+VERSION 7 — "Reading the payment file properly"
+----------------------------------------------------------------
+FIXED
+- The app could not read the payment amount when the payment proof
+  was saved as a PDF (it only worked on image screenshots before).
+  It now handles both.
+
+WHAT'S NEW
+- Each due-date folder now also contains a notepad file listing
+  every adjudication number in that voucher, with its amount.
+- The supporting-documents PDF is now named clearly, for example:
+  "PV - (Deleum Oilfield Services Sdn Bhd) - Supporting Document
+  (RM 57.00).pdf"
+- The app was renamed to "PV Generator" and now shows your logo at
+  the top.
+- Fresh look — cleaner layout, clearer colours, and each document
+  turns green once it's been uploaded.
+
+----------------------------------------------------------------
+VERSION 6 — "Sorting by due date"
+----------------------------------------------------------------
+WHAT'S NEW
+- The app now reads the payment DUE DATE straight from the letter.
+- Documents are automatically separated by due date. Instead of one
+  big file, you now get a ZIP containing one folder per due date,
+  for example:
+      20-08-2026/  PV.pdf  +  supporting documents
+      25-08-2026/  PV.pdf  +  supporting documents
+- The app now reads the payment AMOUNT from the yellow-highlighted
+  box on your payment screenshot, so you don't type it in.
+- Capacity increased from 10 lines to 50 lines.
+
+IMPORTANT RULE ADDED
+- A due date is now compulsory. If the app can't read it from a
+  letter (for example a scanned letter with no readable text), it
+  will stop and ask you to pick the date yourself. This prevents
+  documents being filed into the wrong folder.
+
+----------------------------------------------------------------
+VERSION 5 — "One upload button"
+----------------------------------------------------------------
+WHAT'S NEW
+- Instead of one upload button per document type, there is now a
+  single upload button per line. Select all the files for that line
+  at once and the app sorts them automatically into:
+      Adjudication Letter  — recognised by its contents
+      Application          — file name contains "permohonan"
+      Purchase Order       — file name has "PO" + numbers, or is
+                             mostly numbers
+      Payment File         — file name contains "payment"
+      Additional Documents — anything else (no naming rule)
+
+LAYOUT IMPROVEMENTS TO THE VOUCHER
+- All text set to Times New Roman size 11.
+- "RM" now shown before the amount, in bold.
+- DR and CR totals in bold.
+- Tick boxes centred properly.
+- All lines on the form made the same thickness.
+- Signature lines and names repositioned to match the official form.
+
+----------------------------------------------------------------
+VERSION 4 — "More document types"
+----------------------------------------------------------------
+WHAT'S NEW
+- Added three more upload slots per line: Application, Purchase
+  Order, and Additional Documents (which accepts multiple files).
+- Adjudication Letter, Application, Purchase Order and Payment File
+  are now all compulsory before a voucher can be generated.
+- Uploads now accept both PDF files and images.
+- The combined PDF now starts with a clickable index page — click
+  any adjudication number to jump straight to that section.
+
+----------------------------------------------------------------
+VERSION 3 — "Checks and convenience"
+----------------------------------------------------------------
+CHECKS ADDED (to catch mistakes before generating)
+- Warns if the letter's file name doesn't contain its adjudication
+  number.
+- Warns if a required document is missing.
+- Warns if a line has an amount but no adjudication number, or a
+  letter but no amount.
+- Blocks the same letter being used on two different lines.
+- Duplicate adjudication numbers are highlighted in red.
+- Maximum 10 lines, with a counter showing how many are used.
+
+CONVENIENCE ADDED
+- Your name is remembered between sessions, so no retyping.
+- Save your work as a draft and continue later.
+- The output file is named automatically using the subsidiary and
+  date.
+- A "Preview PV" button shows just the voucher page in a new tab so
+  you can check it before generating everything.
+
+----------------------------------------------------------------
+VERSION 2 — "Getting the voucher right"
+----------------------------------------------------------------
+CHANGED
+- The voucher is now rebuilt properly instead of typing over a
+  scanned template, which fixes text overlapping and misalignment.
+- Filled-in details now print in black.
+- Blank adjudication rows are no longer printed.
+- Amounts moved to the correct DR / CR columns, with the totals
+  adding up per column.
+- Separator pages between documents simplified.
+
+----------------------------------------------------------------
+VERSION 1 — "First working version"
+----------------------------------------------------------------
+- Upload adjudication letters and payment screenshots.
+- The adjudication number is read automatically from the letter.
+- Enter the amount, and the app totals it up.
+- Pick the subsidiary from a list; date defaults to today.
+- Generates the Payment Voucher and combines everything into one
+  PDF file.
+- Runs entirely on your own computer — no internet, no installation,
+  and no files are ever uploaded anywhere.
+
+================================================================
+HOW TO RUN THE APP
+================================================================
+There are two ways, depending on which version you have:
+
+1. FROM A WEB LINK (if hosted on GitHub Pages)
+   Just open the link. Nothing to install. All features work.
+
+2. FROM A FOLDER ON YOUR COMPUTER
+   - Best: double-click "Start_PV_Generator (Windows).bat"
+     (or the Mac/Linux version). This enables every feature,
+     including automatic reading of the payment amount.
+   - Quick: double-click "index.html". Everything works except
+     the automatic payment-amount reading — you type it yourself.
+
+In every case the app runs on your own machine and your documents
+are never sent anywhere.
